@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import RepoItem from '@/components/RepoItem/index.vue'
 import Infos from '@/components/Infos/index.vue'
+import RepoItem from '@/components/RepoItem/index.vue'
 import { $api } from '@/apis/index'
 import { RepoItem as IRepoItem } from '@/types/index'
 
@@ -63,6 +63,7 @@ function setIo () {
       v-for="repoItem in repoItems"
       :key="repoItem.id"
       :repoItem="repoItem" 
+      data-test="repo-item"
     />
     <div class="bottom h-3" />
   </div>
