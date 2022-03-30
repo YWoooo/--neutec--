@@ -1,5 +1,5 @@
 import axios from 'axios'
-import catApi from './cat.api'
+import githubApi from './github.api'
 import { App } from 'vue'
 
 declare module '@vue/runtime-core' {
@@ -10,7 +10,7 @@ declare module '@vue/runtime-core' {
 
 export const axiosInstance = axios.create()
 export const $api = {
-  ...catApi
+  ...githubApi
 }
 
 export default {
