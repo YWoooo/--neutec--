@@ -31,7 +31,7 @@ export interface Repo {
   owner: Owner;
   private: boolean;
   html_url: string;
-  description: string;
+  description: string | null;
   fork: boolean;
   url: string;
   archive_url: string;
