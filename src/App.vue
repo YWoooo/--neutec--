@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import RepoItem from '@/components/RepoItem/index.vue'
+import Infos from '@/components/Infos/index.vue'
 import { $api } from '@/apis/index'
 import { RepoItem as IRepoItem } from '@/types/index'
 
 const repoItems = ref<IRepoItem[]>([])
+const username = 'franklion'
 const page = ref(1)
+const isNoMoreRepo = ref(false)
 
-onMounted(() => {
-  getRepos('franklion')
+onMounted(async () => {
+  await getRepos(username)
+  setIo()
 })
 
 async function getRepos(username: string) {
@@ -16,7 +20,7 @@ async function getRepos(username: string) {
     const res = await $api.repos(username, {
       page: page.value
     })
-    repoItems.value = res.map((repo) => {
+    const newItems = res.map((repo) => {
       return {
         id: repo.id,
         name: repo.name,
@@ -24,18 +28,42 @@ async function getRepos(username: string) {
         html_url: repo.html_url
       }
     })
+    if (!newItems.length) {
+      page.value--
+      isNoMoreRepo.value = true
+      return
+    }
+    repoItems.value = [...repoItems.value, ...newItems]
   } catch (e) {
     console.error(e)
   }
+}
+
+function setIo () {
+  const io = new IntersectionObserver((entries) => {
+    if (isNoMoreRepo.value) {
+      io.disconnect()
+      return
+    }
+    const isBottom = entries[0].isIntersecting
+    if (isBottom) {
+      page.value++
+      getRepos(username)
+    }
+  })
+  const bottom = document.getElementsByClassName('bottom')[0]
+  io.observe(bottom)
 }
 </script>
 
 <template>
   <div class="p-4">
+    <Infos :username="username" />
     <RepoItem 
       v-for="repoItem in repoItems"
       :key="repoItem.id"
       :repoItem="repoItem" 
     />
+    <div class="bottom h-3" />
   </div>
 </template>
