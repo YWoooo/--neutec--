@@ -10,7 +10,14 @@ const props = defineProps({
 <template>
   <div class="mb-4">
     <h1 class="text-xl font-bold">
-      張育維-neutec-前端面試前測作業
+      <a 
+        class="text-blue-500 underline"
+        href="https://github.com/YWoooo/neutec-test"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        張育維-neutec-前端面試前測作業
+      </a>
     </h1>
     <div class="mt-4">
       Github Page 網址
