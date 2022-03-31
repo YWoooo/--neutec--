@@ -16,11 +16,11 @@ const props = defineProps({
       Github Page 網址
       <a 
         class="text-blue-500 underline"
-        href="https://github.com/franklion/advance_practice"
+        href="https://ywoooo.github.io/neutec-test/"
         target="_blank"
         rel="noreferrer noopener"
       >
-        https://github.com/franklion/advance_practice
+        https://ywoooo.github.io/neutec-test/
       </a>      
     </div>    
     <div>

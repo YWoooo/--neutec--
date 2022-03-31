@@ -17,7 +17,9 @@ describe('Infos.vue', () => {
   })
 
   test('has Github page url', () => {
-    expect(wrapper.text()).toContain('https://github.com/franklion/advance_practice')
+    const a = wrapper.find('a')
+    expect(a.text()).toContain('https://ywoooo.github.io/neutec-test/')
+    expect(a.attributes('href')).toBe('https://ywoooo.github.io/neutec-test/')
   })
 
   test('has others repo url', () => {
