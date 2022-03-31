@@ -50,6 +50,8 @@ function setIo () {
       page.value++
       getRepos(username)
     }
+  }, {
+    threshold: 0.3
   })
   const bottom = document.getElementsByClassName('bottom')[0]
   io.observe(bottom)
@@ -65,6 +67,6 @@ function setIo () {
       :repoItem="repoItem" 
       data-test="repo-item"
     />
-    <div class="bottom h-3" />
+    <div class="bottom h-24" />      
   </div>
 </template>
